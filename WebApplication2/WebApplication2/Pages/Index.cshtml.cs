@@ -13,9 +13,11 @@ namespace WebApplication2.Pages
 {
     public class IndexModel : PageModel
     {
-			// For help with the connection see:
-			// https://dev.mysql.com/doc/connector-net/en/connector-net-programming-connecting-connection-string.html
-			MySqlConnection conn;
+		// For help with the connection see:
+		// https://dev.mysql.com/doc/connector-net/en/connector-net-programming-connecting-connection-string.html
+		MySqlConnection conn;
+		MySqlCommand cmd;
+		MySqlDataReader reader;
 
 		public IndexModel()
 		{
@@ -23,7 +25,9 @@ namespace WebApplication2.Pages
 			{
 				conn = new MySqlConnection();
 				conn.ConnectionString = "server=209.106.201.103;uid=dbstudent24;pwd=greatdugong72;database=group4";
-				
+				cmd = new MySqlCommand();
+				cmd.Connection = conn;
+				cmd.CommandType = CommandType.Text;
 			}
 			catch (MySql.Data.MySqlClient.MySqlException ex)
 			{
@@ -33,8 +37,11 @@ namespace WebApplication2.Pages
 
         public void OnGet()
         {
+			cmd.CommandText = "SELECT firstName FROM TestTable";
+			ViewData["MyStudent"] = cmd.ExecuteScalar();
 
-        }
+
+		}
 
 		public void OnPost()
 		{
@@ -43,10 +50,7 @@ namespace WebApplication2.Pages
 			var address = Request.Form["address"];
 			var gradDate = Request.Form["gradDate"];
 			conn.Open();
-			MySqlCommand cmd = new MySqlCommand();
 			cmd.CommandText = String.Format("insert into TestTable values (NULL, \"{0}\",\"{1}\",\"{2}\",\"{3}\");", firstName, lastName, address, gradDate);
-			cmd.Connection = conn;
-			cmd.CommandType = CommandType.Text;
 			MySqlDataReader reader = cmd.ExecuteReader();
 		}
 	}
