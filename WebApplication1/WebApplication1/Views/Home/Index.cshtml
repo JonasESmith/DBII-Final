@@ -1,0 +1,22 @@
+﻿@model StudentModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    <form asp-action="Index" asp-controller="">
+        <h3>Student Information</h3>
+        First name:
+        <input asp-for="FirstName" placeholder="First name here" /><br />
+        Last name:
+        <input asp-for="LastName" placeholder="Last name here" /><br />
+        Address:
+        <input asp-for="Address" placeholder="Address here" /><br />
+        Expected Graduation:
+        <input asp-for="GradDate" type="date" /><br />
+
+        <input type="submit" />
+    </form>
+
+    <h3>@ViewData["Message"]</h3>
+</div>
