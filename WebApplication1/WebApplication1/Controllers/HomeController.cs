@@ -44,6 +44,7 @@ namespace WebApplication1.Controllers
 			catch (MySql.Data.MySqlClient.MySqlException ex)
 			{
 				//MessageBox.Show(ex.Message);
+				ViewData["Message"] = "Data failed to be submitted.";
 			}
 
 			return View();
