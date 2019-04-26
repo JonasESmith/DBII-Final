@@ -20,7 +20,7 @@ namespace WebApplication1.Controllers
 		}
 
 		[HttpPost, ValidateAntiForgeryToken]
-		public IActionResult Index(StudentModel student)
+		public IActionResult Index(IndexPageModel indexModel)
 		{
 			// For help with the connection see:
 			// https://dev.mysql.com/doc/connector-net/en/connector-net-programming-connecting-connection-string.html
@@ -37,7 +37,8 @@ namespace WebApplication1.Controllers
 				cmd.CommandType = CommandType.Text;
 				conn.Open();
 				cmd.CommandText = String.Format("insert into TestTable values (NULL, \"{0}\",\"{1}\",\"{2}\",\"{3}\");",
-												student.FirstName, student.LastName, student.Address, student.GradDate);
+												indexModel.Student.FirstName, indexModel.Student.LastName, indexModel.Student.Address,
+												indexModel.Student.GradDate);
 				reader = cmd.ExecuteReader();
 				ViewData["Message"] = "Data successfully submitted.";
 			}

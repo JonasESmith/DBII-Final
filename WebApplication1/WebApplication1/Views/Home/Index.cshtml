@@ -1,4 +1,4 @@
-﻿@model StudentModel
+﻿@model IndexPageModel
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -7,16 +7,20 @@
     <form asp-action="Index" asp-controller="">
         <h3>Student Information</h3>
         First name:
-        <input asp-for="FirstName" placeholder="First name here" /><br />
+        <input asp-for="Student.FirstName" placeholder="First name here" /><br />
         Last name:
-        <input asp-for="LastName" placeholder="Last name here" /><br />
+        <input asp-for="Student.LastName" placeholder="Last name here" /><br />
         Address:
-        <input asp-for="Address" placeholder="Address here" /><br />
+        <input asp-for="Student.Address" placeholder="Address here" /><br />
         Expected Graduation:
-        <input asp-for="GradDate" type="date" /><br />
+        <input asp-for="Student.GradDate" type="date" /><br />
 
         <input type="submit" />
     </form>
 
     <h3>@ViewData["Message"]</h3>
+
+    &nbsp;
+
+    <select name="contact" asp-for="Contacts"></select>
 </div>
