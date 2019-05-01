@@ -12,9 +12,14 @@ namespace WebApplication1.Models
 			public string FirstName { get; set; }
 			public string LastName { get; set; }
 			public string Address { get; set; }
+			public string Major { get; set; }
 			public string GradDate { get; set; }
 		}
 
+		public class ContactModel
+		{
+			public string FirstName { get; set; }
+		}
 
 		public StudentModel Student { get; set; }
 		public List<Object> Contacts { get; set; }
