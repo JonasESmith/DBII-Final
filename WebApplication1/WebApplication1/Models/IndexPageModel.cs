@@ -9,6 +9,7 @@ namespace WebApplication1.Models
 	{
 		public class StudentModel
 		{
+			public int StudentID { get; set; }
 			public string FirstName { get; set; }
 			public string LastName { get; set; }
 			public string Address { get; set; }
@@ -18,10 +19,13 @@ namespace WebApplication1.Models
 
 		public class ContactModel
 		{
-			public string FirstName { get; set; }
+			public int StudentID { get; set; }
+			public int ContactID { get; set; }
+			public string Type { get; set; }
+			public string ContactInfo { get; set; }
 		}
 
 		public StudentModel Student { get; set; }
-		public List<Object> Contacts { get; set; }
+		public List<ContactModel> Contacts { get; set; }
 	}
 }

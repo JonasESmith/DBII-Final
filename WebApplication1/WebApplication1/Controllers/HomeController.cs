@@ -36,16 +36,15 @@ namespace WebApplication1.Controllers
 				cmd.Connection = conn;
 				cmd.CommandType = CommandType.Text;
 				conn.Open();
-				cmd.CommandText = String.Format("insert into TestTable values (NULL, \"{0}\",\"{1}\",\"{2}\",\"{3}\");",
+				cmd.CommandText = String.Format("insert into Student values (NULL, \"{0}\",\"{1}\",\"{2}\",\"{3}\"),null;",
 												indexModel.Student.FirstName, indexModel.Student.LastName, indexModel.Student.Address,
-												indexModel.Student.GradDate);
+												indexModel.Student.Major, indexModel.Student.GradDate);
 				reader = cmd.ExecuteReader();
 				ViewData["Message"] = "Data successfully submitted.";
 			}
 			catch (MySql.Data.MySqlClient.MySqlException ex)
 			{
-				//MessageBox.Show(ex.Message);
-				ViewData["Message"] = "Data failed to be submitted.";
+				ViewData["Message"] = ex.Message;
 			}
 
 			return View();
