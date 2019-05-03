@@ -36,7 +36,7 @@ namespace WebApplication1.Controllers
 				cmd.Connection = conn;
 				cmd.CommandType = CommandType.Text;
 				conn.Open();
-				cmd.CommandText = String.Format("insert into Student values (NULL, \"{0}\",\"{1}\",\"{2}\",\"{3}\"),null;",
+				cmd.CommandText = String.Format("insert into Student values (NULL, \"{0}\",\"{1}\",\"{2}\",\"{3}\",null);",
 												indexModel.Student.FirstName, indexModel.Student.LastName, indexModel.Student.Address,
 												indexModel.Student.Major, indexModel.Student.GradDate);
 				reader = cmd.ExecuteReader();
