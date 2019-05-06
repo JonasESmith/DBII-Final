@@ -45,7 +45,46 @@ namespace WebApplication1.Controllers
 			return View();
 		}
 
-		[HttpPost, ValidateAntiForgeryToken]
+    public IActionResult Students()
+    {
+      // For help with the connection see:
+      // https://dev.mysql.com/doc/connector-net/en/connector-net-programming-connecting-connection-string.html
+      MySqlConnection conn;
+      MySqlCommand cmd;
+
+      var model = new List<Student>();
+      try
+      {
+        conn = new MySqlConnection();
+        conn.ConnectionString = "server=209.106.201.103;uid=dbstudent24;pwd=greatdugong72;database=group4";
+        cmd = new MySqlCommand();
+        cmd.Connection = conn;
+        cmd.CommandType = CommandType.Text;
+        conn.Open();
+
+        cmd.CommandText = String.Format("Select * from Student");
+
+        MySqlDataReader sqlReader = cmd.ExecuteReader();
+        while (sqlReader.Read())
+        {
+          var student = new Student();
+          student.FirstName = sqlReader["first_name"].ToString();
+          student.LastName = sqlReader["last_name"].ToString();
+          student.Major = sqlReader["Major"].ToString();
+
+          model.Add(student);
+        }
+      }
+      catch (MySql.Data.MySqlClient.MySqlException ex)
+      {
+        ViewData["Message"] = ex.Message;
+      }
+
+
+      return View(model);
+    }
+
+    [HttpPost, ValidateAntiForgeryToken]
 		public IActionResult Index(IndexPageModel indexModel)
 		{
 			// For help with the connection see:
