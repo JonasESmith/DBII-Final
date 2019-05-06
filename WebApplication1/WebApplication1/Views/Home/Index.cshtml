@@ -15,14 +15,16 @@
         Major:
         <input asp-for="Student.Major" placeholder="Major here" /><br />
         Expected Graduation:
-        <input asp-for="Student.GradDate" type="date" /><br />
+        <input asp-for="Student.GradDate" type="date" /><br /><br />
+
+        <select asp-for="Contact.Type" asp-items="Html.GetEnumSelectList<IndexPageModel.ContactType>()" name="ContactType"></select>
+        <input asp-for="Contact.ContactInfo" type="text" /><br /><br />
 
         <input type="submit" />
     </form>
 
+        &nbsp;
+
     <h3>@ViewData["Message"]</h3>
-
-    &nbsp;
-
-    <select name="contact" asp-for="Contacts"></select>
+    
 </div>

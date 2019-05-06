@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore;
 
 namespace WebApplication1.Models
 {
@@ -21,11 +22,13 @@ namespace WebApplication1.Models
 		{
 			public int StudentID { get; set; }
 			public int ContactID { get; set; }
-			public string Type { get; set; }
+			public ContactType Type { get; set; }
 			public string ContactInfo { get; set; }
 		}
 
 		public StudentModel Student { get; set; }
-		public List<ContactModel> Contacts { get; set; }
+		public enum ContactType { Email, Phone }
+		public ContactType ContactTypes { get; set; }
+		public ContactModel Contact { get; set; }
 	}
 }

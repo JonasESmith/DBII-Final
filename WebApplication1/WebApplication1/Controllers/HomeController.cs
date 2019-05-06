@@ -36,9 +36,18 @@ namespace WebApplication1.Controllers
 				cmd.Connection = conn;
 				cmd.CommandType = CommandType.Text;
 				conn.Open();
-				cmd.CommandText = String.Format("insert into Student values (NULL, \"{0}\",\"{1}\",\"{2}\",\"{3}\",null);",
+				cmd.CommandText = String.Format("INSERT INTO Student VALUES (NULL, \"{0}\", \"{1}\", \"{2}\", \"{3}\", NULL);",
 												indexModel.Student.FirstName, indexModel.Student.LastName, indexModel.Student.Address,
 												indexModel.Student.Major, indexModel.Student.GradDate);
+
+				reader = cmd.ExecuteReader();
+
+				cmd.CommandText = String.Format("INSERT INTO Contact VALUES ((SELECT studentID FROM Student WHERE first_name = \"{0}\" AND "
+												+ "last_name = \"{1}\" AND Address = \"{2}\" AND Major = \"{3}\" AND Expected_Graduation IS NULL) "
+												+ ", NULL, \"{5}\", \"{6}\")",
+												indexModel.Student.FirstName, indexModel.Student.LastName, indexModel.Student.Address,
+												indexModel.Student.Major, indexModel.Student.GradDate, indexModel.Contact.Type, indexModel.Contact.ContactInfo);
+
 				reader = cmd.ExecuteReader();
 				ViewData["Message"] = "Data successfully submitted.";
 			}
