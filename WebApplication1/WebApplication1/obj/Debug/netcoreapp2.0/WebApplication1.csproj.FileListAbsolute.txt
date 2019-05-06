@@ -20,3 +20,14 @@ C:\Users\joe\source\repos\DBII-Final\WebApplication1\WebApplication1\obj\Debug\n
 C:\Users\joe\source\repos\DBII-Final\WebApplication1\WebApplication1\obj\Debug\netcoreapp2.0\WebApplication1.AssemblyInfo.cs
 C:\Users\joe\source\repos\DBII-Final\WebApplication1\WebApplication1\obj\Debug\netcoreapp2.0\WebApplication1.dll
 C:\Users\joe\source\repos\DBII-Final\WebApplication1\WebApplication1\obj\Debug\netcoreapp2.0\WebApplication1.pdb
+C:\Users\Voxel\Desktop\DBII-Final\WebApplication1\WebApplication1\bin\Debug\netcoreapp2.0\WebApplication1.deps.json
+C:\Users\Voxel\Desktop\DBII-Final\WebApplication1\WebApplication1\bin\Debug\netcoreapp2.0\WebApplication1.runtimeconfig.json
+C:\Users\Voxel\Desktop\DBII-Final\WebApplication1\WebApplication1\bin\Debug\netcoreapp2.0\WebApplication1.runtimeconfig.dev.json
+C:\Users\Voxel\Desktop\DBII-Final\WebApplication1\WebApplication1\bin\Debug\netcoreapp2.0\WebApplication1.dll
+C:\Users\Voxel\Desktop\DBII-Final\WebApplication1\WebApplication1\bin\Debug\netcoreapp2.0\WebApplication1.pdb
+C:\Users\Voxel\Desktop\DBII-Final\WebApplication1\WebApplication1\obj\Debug\netcoreapp2.0\WebApplication1.csprojAssemblyReference.cache
+C:\Users\Voxel\Desktop\DBII-Final\WebApplication1\WebApplication1\obj\Debug\netcoreapp2.0\WebApplication1.csproj.CoreCompileInputs.cache
+C:\Users\Voxel\Desktop\DBII-Final\WebApplication1\WebApplication1\obj\Debug\netcoreapp2.0\WebApplication1.AssemblyInfoInputs.cache
+C:\Users\Voxel\Desktop\DBII-Final\WebApplication1\WebApplication1\obj\Debug\netcoreapp2.0\WebApplication1.AssemblyInfo.cs
+C:\Users\Voxel\Desktop\DBII-Final\WebApplication1\WebApplication1\obj\Debug\netcoreapp2.0\WebApplication1.dll
+C:\Users\Voxel\Desktop\DBII-Final\WebApplication1\WebApplication1\obj\Debug\netcoreapp2.0\WebApplication1.pdb
