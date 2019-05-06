@@ -1,8 +1,14 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
+<<<<<<< HEAD
       "C:\\Users\\ispha\\.dotnet\\store\\|arch|\\|tfm|",
       "C:\\Users\\ispha\\.nuget\\packages",
+=======
+      "C:\\Users\\Voxel\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Voxel\\.nuget\\packages",
+      "C:\\ProgramData\\Xamarin\\NuGet",
+>>>>>>> origin/master
       "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
     ]
   }
