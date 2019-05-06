@@ -56,7 +56,7 @@ namespace WebApplication1.Controllers
       try
       {
         conn = new MySqlConnection();
-        conn.ConnectionString = "server=209.106.201.103;uid=dbstudent24;pwd=greatdugong72;database=group4";
+        conn.ConnectionString = dbConnectionString;
         cmd = new MySqlCommand();
         cmd.Connection = conn;
         cmd.CommandType = CommandType.Text;
@@ -75,6 +75,8 @@ namespace WebApplication1.Controllers
 
           model.Add(student);
         }
+
+		conn.CloseAsync();
       }
       catch (MySql.Data.MySqlClient.MySqlException ex)
       {
