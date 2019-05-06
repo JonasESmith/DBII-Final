@@ -13,9 +13,35 @@ namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
+		private const string dbConnectionString = "server=209.106.201.103;uid=dbstudent24;pwd=greatdugong72;database=group4";
+
 		[HttpGet]
 		public IActionResult Index()
 		{
+			MySqlConnection conn;
+			MySqlCommand cmd;
+			MySqlDataReader reader;
+
+			conn = new MySqlConnection();
+			conn.ConnectionString = dbConnectionString;
+
+			try
+			{
+				cmd = new MySqlCommand();
+				cmd.Connection = conn;
+				cmd.CommandType = CommandType.Text;
+				conn.Open();
+				cmd.CommandText = String.Format("select first_name, Contact.contactInfo from Student natural join Contact where Contact.type = \"Email\";");
+
+				reader = cmd.ExecuteReader();
+			}
+			catch (MySql.Data.MySqlClient.MySqlException ex)
+			{
+				ViewData["Message"] = ex.Message;
+			}
+
+			conn.CloseAsync();
+
 			return View();
 		}
 
@@ -27,11 +53,11 @@ namespace WebApplication1.Controllers
 			MySqlConnection conn;
 			MySqlCommand cmd;
 			MySqlDataReader reader;
+			conn = new MySqlConnection();
+			conn.ConnectionString = dbConnectionString;
 
 			try
 			{
-				conn = new MySqlConnection();
-				conn.ConnectionString = "server=209.106.201.103;uid=dbstudent24;pwd=greatdugong72;database=group4";
 				cmd = new MySqlCommand();
 				cmd.Connection = conn;
 				cmd.CommandType = CommandType.Text;
@@ -55,6 +81,8 @@ namespace WebApplication1.Controllers
 			{
 				ViewData["Message"] = ex.Message;
 			}
+
+			conn.CloseAsync();
 
 			return View();
         }
