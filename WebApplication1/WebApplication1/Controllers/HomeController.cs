@@ -62,7 +62,7 @@ namespace WebApplication1.Controllers
         cmd.CommandType = CommandType.Text;
         conn.Open();
 
-        cmd.CommandText = String.Format("Select * from Student");
+        cmd.CommandText = String.Format("Select * from Student Natural Join Contact where Contact.Type = \"Phone\"");
 
         MySqlDataReader sqlReader = cmd.ExecuteReader();
         while (sqlReader.Read())
@@ -70,6 +70,7 @@ namespace WebApplication1.Controllers
           var student = new Student();
           student.FirstName = sqlReader["first_name"].ToString();
           student.LastName = sqlReader["last_name"].ToString();
+          student.Phone = sqlReader["ContactInfo"].ToString();
           student.Major = sqlReader["Major"].ToString();
 
           model.Add(student);
