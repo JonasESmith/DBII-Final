@@ -44,31 +44,6 @@ namespace WebApplication1.Controllers
 
     public IActionResult EditStudent(List<string> student)
     {
-      //MySqlConnection conn;
-      //MySqlCommand cmd;
-      //MySqlDataReader reader;
-
-      //conn = new MySqlConnection();
-      //conn.ConnectionString = dbConnectionString;
-
-      //try
-      //{
-      //  cmd = new MySqlCommand();
-      //  cmd.Connection = conn;
-      //  cmd.CommandType = CommandType.Text;
-      //  conn.Open();
-      //  cmd.CommandText = String.Format();
-      //  ViewData["Message"] = "Data deleted";
-
-      //  reader = cmd.ExecuteReader();
-      //}
-      //catch (MySql.Data.MySqlClient.MySqlException ex)
-      //{
-      //  ViewData["Message"] = ex.Message;
-      //}
-
-      //conn.CloseAsync();
-
       return View(student);
     }
 

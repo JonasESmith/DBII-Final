@@ -1,26 +1,18 @@
-﻿
-@*
+﻿@*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @model List<string>
 
 
 <table class="table table-bordered table-responsive table-hover">
-    <tr>
-        <th>ID</th>
-        <th>First name</th>
-        <th>Last name</th>
-        <th>Adress</th>
-        <th>Major</th>
-        <th>Phone</th>
-        <th></th>
-        <th></th>
-    </tr>
+    <tr></tr>
     @foreach (var list in Model)
     {
         <tr>
-                <td>@list.ToString()</td>
+            <td> <input type="text" value="@list.ToString()" />
         </tr>
     }
 
 </table>
+
+<input type="submit"/>
