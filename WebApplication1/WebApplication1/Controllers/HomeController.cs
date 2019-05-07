@@ -43,8 +43,37 @@ namespace WebApplication1.Controllers
 		}
 
     public IActionResult EditStudent(List<string> student)
-    {
-      return View(student);
+		{
+			MySqlConnection conn;
+			MySqlCommand cmd;
+			MySqlDataReader reader;
+
+			conn = new MySqlConnection();
+			conn.ConnectionString = dbConnectionString;
+
+			try
+			{
+				cmd = new MySqlCommand();
+				cmd.Connection = conn;
+				cmd.CommandType = CommandType.Text;
+				conn.Open();
+				cmd.CommandText = String.Format("UPDATE Student SET first_name = \"{0}\", last_name = \"{1}\", Address = \"{2}\", Major = \"{3}\" " +
+												"WHERE studentID = {4};", 
+												student[1], student[2], student[3], student[4], student[0]);
+				ViewData["Message"] = cmd.CommandText;
+				reader = cmd.ExecuteReader();
+
+				cmd.CommandText = String.Format("UPDATE Contact SET contactInfo = \"{0}\" WHERE studentID = {1}",
+												student[5], student[0]);
+			}
+			catch (MySql.Data.MySqlClient.MySqlException ex)
+			{
+				ViewData["Message"] = ex.Message;
+			}
+
+			conn.CloseAsync();
+
+			return View(student);
     }
 
 	[HttpPost]
