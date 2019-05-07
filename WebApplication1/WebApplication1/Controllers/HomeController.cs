@@ -62,18 +62,15 @@ namespace WebApplication1.Controllers
         cmd.CommandType = CommandType.Text;
         conn.Open();
 
-        cmd.CommandText = String.Format("Select * from Student Natural Join Contact where Contact.Type = \"Phone\" Order By Major");
+        cmd.CommandText = String.Format("Select * from Student Natural Join Contact where Contact.Type = \"Email\" Order By Major");
+
 
         MySqlDataReader sqlReader = cmd.ExecuteReader();
         while (sqlReader.Read())
         {
           List<string> SqlList = new List<string>();
 
-          SqlList.Add(sqlReader["studentID"].ToString());
-          SqlList.Add(sqlReader["first_name"].ToString());
-          SqlList.Add(sqlReader["last_name"].ToString());
           SqlList.Add(sqlReader["ContactInfo"].ToString());
-          SqlList.Add(sqlReader["Major"].ToString());
 
           model.Add(SqlList);
         }
@@ -84,7 +81,6 @@ namespace WebApplication1.Controllers
       {
         ViewData["Message"] = ex.Message;
       }
-
 
       return View(model);
     }
@@ -106,7 +102,7 @@ namespace WebApplication1.Controllers
         cmd.CommandType = CommandType.Text;
         conn.Open();
 
-        cmd.CommandText = String.Format("Select * from Student Natural Join Contact where Contact.Type = \"Email\"");
+        cmd.CommandText = String.Format("Select * from Student Natural Join Contact where Contact.Type = \"Phone\" Order By Major");
 
         MySqlDataReader sqlReader = cmd.ExecuteReader();
         while (sqlReader.Read())
