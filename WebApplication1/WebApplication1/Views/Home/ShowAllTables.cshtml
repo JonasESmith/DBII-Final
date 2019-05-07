@@ -24,8 +24,15 @@
             <td>@item.ToString()</td>
         }
 
-        <td> <input type="button" name="button + @list[0]" value="Edit" onclick="window.location.href('@Url.Action("EditStudent","HomeController")')"  /> </td>
-        <td> <input type="button" name="delete + @list[0]" value="Delete" /> </td>
+        @using (Html.BeginForm("EditStudent", "Home"))
+        {
+            <td> <input type="submit" value="Edit" /> </td>
+        }
+
+        @using (Html.BeginForm("EditStudent", "Home"))
+        {
+            <td> <input type="submit" value="Delete" /> </td>
+        }
     </tr>
     }
     
