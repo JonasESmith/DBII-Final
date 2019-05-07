@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lionSearch", "lionSearch\lionSearch.csproj", "{70DF084A-80B9-4874-884B-72BE2BB516A6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lionSearch", "lionSearch\lionSearch.csproj", "{AD15AFBD-283D-41B1-9270-2B5F91D10C82}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{70DF084A-80B9-4874-884B-72BE2BB516A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{70DF084A-80B9-4874-884B-72BE2BB516A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{70DF084A-80B9-4874-884B-72BE2BB516A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{70DF084A-80B9-4874-884B-72BE2BB516A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD15AFBD-283D-41B1-9270-2B5F91D10C82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD15AFBD-283D-41B1-9270-2B5F91D10C82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD15AFBD-283D-41B1-9270-2B5F91D10C82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD15AFBD-283D-41B1-9270-2B5F91D10C82}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {73B85E41-D22D-40F6-8EF2-4EE46E69EB1E}
+		SolutionGuid = {9B928298-2BB4-472F-B5E0-7798B6EEE371}
 	EndGlobalSection
 EndGlobal

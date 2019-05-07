@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="lionSearch.Global" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="lionSearch.MvcApplication" Language="C#" %>
