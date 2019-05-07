@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using WebApplication1.Models;
-using MySql.Data.MySqlClient;
-using MySql.Data;
 using System.Data;
+using System.Diagnostics;
+using MySql.Data.MySqlClient;
+using WebApplication1.Models;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace WebApplication1.Controllers
 {

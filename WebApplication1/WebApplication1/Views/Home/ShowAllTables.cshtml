@@ -26,6 +26,7 @@
 
         @using (Html.BeginForm("EditStudent", "Home"))
         {
+            <input type="hidden" name="studentId" value="@list[0]" >
             <td> <input type="submit" value="Edit" /> </td>
         }
 
