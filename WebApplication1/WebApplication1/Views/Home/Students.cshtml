@@ -1,7 +1,7 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@model List<StudentPageModel>
+@model List<List<string>>
 
 <h1>Current Enrolled Students</h1>
 
@@ -12,13 +12,13 @@
         <th>Phone Number</th>
         <th>Major</th>
     </tr>
-    @foreach (var student in Model)
+    @foreach (var list in Model)
     {
         <tr>
-            <td>@student.StudentInfo.Item1.FirstName</td>
-            <td>@student.StudentInfo.Item1.LastName</td>
-            <td>@student.StudentInfo.Item2.ContactInfo</td>
-            <td>@student.StudentInfo.Item1.Major</td>
+            @foreach (var item in list)
+            {
+                <td>@item.ToString()</td>
+            }
         </tr>
     }
 </table>

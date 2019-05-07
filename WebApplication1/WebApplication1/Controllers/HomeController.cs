@@ -52,7 +52,7 @@ namespace WebApplication1.Controllers
       MySqlConnection conn;
       MySqlCommand cmd;
 
-      var model = new List<StudentPageModel>();
+      var model = new List<List<String>>();
       try
       {
         conn = new MySqlConnection();
@@ -67,17 +67,17 @@ namespace WebApplication1.Controllers
         MySqlDataReader sqlReader = cmd.ExecuteReader();
         while (sqlReader.Read())
         {
-          var student = new StudentPageModel();
-		  student.StudentInfo = new Tuple<StudentModel, ContactModel>(new StudentModel(), new ContactModel());
-          student.StudentInfo.Item1.FirstName = sqlReader["first_name"].ToString();
-          student.StudentInfo.Item1.LastName = sqlReader["last_name"].ToString();
-          student.StudentInfo.Item2.ContactInfo = sqlReader["ContactInfo"].ToString();
-          student.StudentInfo.Item1.Major = sqlReader["Major"].ToString();
+          List<string> SqlList = new List<string>();
 
-          model.Add(student);
+          SqlList.Add(sqlReader["first_name"].ToString());
+          SqlList.Add(sqlReader["last_name"].ToString());
+          SqlList.Add(sqlReader["ContactInfo"].ToString());
+          SqlList.Add(sqlReader["Major"].ToString());
+
+          model.Add(SqlList);
         }
 
-		conn.CloseAsync();
+        conn.CloseAsync();
       }
       catch (MySql.Data.MySqlClient.MySqlException ex)
       {
@@ -90,6 +90,48 @@ namespace WebApplication1.Controllers
 
     public IActionResult ShowAllTables()
     {
+      // For help with the connection see:
+      // https://dev.mysql.com/doc/connector-net/en/connector-net-programming-connecting-connection-string.html
+      MySqlConnection conn;
+      MySqlCommand cmd;
+
+      var model = new List<List<String>>();
+      try
+      {
+        conn = new MySqlConnection();
+        conn.ConnectionString = dbConnectionString;
+        cmd = new MySqlCommand();
+        cmd.Connection = conn;
+        cmd.CommandType = CommandType.Text;
+        conn.Open();
+
+        cmd.CommandText = String.Format("Select * from Student Natural Join Contact where Contact.Type = \"Phone\"");
+
+        MySqlDataReader sqlReader = cmd.ExecuteReader();
+        while (sqlReader.Read())
+        {
+          List<string> SqlList = new List<string>();
+
+          SqlList.Add(sqlReader["studentID"].ToString());
+          SqlList.Add(sqlReader["first_name"].ToString());
+          SqlList.Add(sqlReader["last_name"].ToString());
+          SqlList.Add(sqlReader["Address"].ToString());
+          SqlList.Add(sqlReader["Major"].ToString());
+          SqlList.Add(sqlReader["Expected_Graduation"].ToString());
+
+          model.Add(SqlList);
+        }
+
+        conn.CloseAsync();
+      }
+      catch (MySql.Data.MySqlClient.MySqlException ex)
+      {
+        ViewData["Message"] = ex.Message;
+      }
+
+
+      return View(model);
+
       return View();
     }
 
