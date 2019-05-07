@@ -43,11 +43,10 @@ namespace lionSearch.Controllers
 		[HttpGet]
 		public ActionResult AddStudent()
 		{
-			ModelState.Clear();
 			return View(new AddStudentModel());
 		}
 
-		[HttpPost]
+		[HttpPost, ValidateAntiForgeryToken]
 		public ActionResult AddStudent(AddStudentModel student)
 		{
 			// For help with the connection see:

@@ -1,11 +1,12 @@
-﻿@{
-    ViewBag.Title = "AddStudent";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-@model AddStudentModel
+﻿@model lionSearch.Models.AddStudentModel
 
-@using (Html.BeginForm("AddStudent", "Home", FormMethod.Post, new { student = Model }))
+@{
+    ViewBag.Title = "AddStudent";
+}
+
+@using (Html.BeginForm("AddStudent", "Home", FormMethod.Post))
 {
+    @Html.AntiForgeryToken()
     <h3>Student Information</h3>
     <div>
         First name:
@@ -24,6 +25,31 @@
     <input type="submit" value="Add Student" />
 }
 
+<!--
+using (Html.BeginForm())
+{
+    Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>AddStudentModel</h4>
+        <hr />
+        Html.ValidationSummary(true, "", new { class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    Html.ActionLink("Back to List", "Index")
+</div>
+
+section Scripts {
+    Scripts.Render("~/bundles/jqueryval")
+}
+    -->
 <!--
 <div>
 
