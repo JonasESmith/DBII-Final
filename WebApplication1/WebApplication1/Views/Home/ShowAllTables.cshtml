@@ -29,7 +29,7 @@
             <td> <input type="submit" value="Edit" /> </td>
         }
 
-        @using (Html.BeginForm("EditStudent", "Home"))
+        @using (Html.BeginForm("DeleteStudent", "Home", new { student = list }))
         {
             <td> <input type="submit" value="Delete" /> </td>
         }

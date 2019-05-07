@@ -50,7 +50,39 @@ namespace WebApplication1.Controllers
       return View();
     }
 
-    public IActionResult EmailStudents()
+	[HttpPost]
+	public IActionResult DeleteStudent(List<string> student)
+		{
+			MySqlConnection conn;
+			MySqlCommand cmd;
+			MySqlDataReader reader;
+
+			conn = new MySqlConnection();
+			conn.ConnectionString = dbConnectionString;
+
+			try
+			{
+				cmd = new MySqlCommand();
+				cmd.Connection = conn;
+				cmd.CommandType = CommandType.Text;
+				conn.Open();
+				cmd.CommandText = String.Format("DELETE FROM Student WHERE studentID = {0}", student[0]);
+				ViewData["Message"] = "Data deleted";
+
+				reader = cmd.ExecuteReader();
+			}
+			catch (MySql.Data.MySqlClient.MySqlException ex)
+			{
+				ViewData["Message"] = ex.Message;
+			}
+
+			conn.CloseAsync();
+
+			return View();
+		}
+
+
+	public IActionResult EmailStudents()
     {
       // For help with the connection see:
       // https://dev.mysql.com/doc/connector-net/en/connector-net-programming-connecting-connection-string.html
