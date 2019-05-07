@@ -45,7 +45,7 @@ namespace WebApplication1.Controllers
 			return View();
 		}
 
-    public IActionResult Students()
+    public IActionResult EmailStudents()
     {
       // For help with the connection see:
       // https://dev.mysql.com/doc/connector-net/en/connector-net-programming-connecting-connection-string.html
