@@ -13,6 +13,7 @@
         <th>Adress</th>
         <th>Major</th>
         <th>Email</th>
+        <th></th>
     </tr>
     @foreach (var list in Model)
     {
@@ -21,6 +22,8 @@
             {
                 <td>@item.ToString()</td>
             }
+            <td> <input type="button" value="Edit"/> </td>
         </tr>
     }
+    
 </table>
