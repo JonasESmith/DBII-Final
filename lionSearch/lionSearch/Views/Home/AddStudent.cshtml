@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "AddStudent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model AddStudentModel
+
+@using (Html.BeginForm("AddStudent", "Home", FormMethod.Post, new { student = Model }))
+{
+    <h3>Student Information</h3>
+    <div>
+        First name:
+        @Html.TextBox("FirstName", Model.Student.FirstName)<br />
+        Last name:
+        @Html.TextBox("LastName", Model.Student.LastName)<br />
+        Address:
+        @Html.TextBoxFor(m => Model.Student.Address)<br />
+        Major:
+        @Html.TextBoxFor(m => m.Student.Major)<br />
+        Expected Graduation:
+        @Html.TextBoxFor(m => m.Student.Address, new { @type = "date" })<br />
+        @Html.EnumDropDownListFor(m => m.Contact.Type)
+        @Html.TextBoxFor(m => m.Contact.ContactInfo)<br />
+    </div>
+    <input type="submit" value="Add Student" />
+}
+
+<!--
+<div>
+
+    <form asp-action="Index" asp-controller="">
+        <h3>Student Information</h3>
+        First name:
+        <input asp-for="Student.FirstName" placeholder="First name here" /><br />
+        Last name:
+        <input asp-for="Student.LastName" placeholder="Last name here" /><br />
+        Address:
+        <input asp-for="Student.Address" placeholder="Address here" /><br />
+        Major:
+        <input asp-for="Student.Major" placeholder="Major here" /><br />
+        Expected Graduation:
+        <input asp-for="Student.GradDate" type="date" /><br /><br />
+
+        <select asp-for="Contact.Type" items="Html.GetEnumSelectList<ContactModel.ContactType>()" name="ContactType"></select>
+        <input asp-for="Contact.ContactInfo" type="text" /><br /><br />
+
+        <input type="submit" />
+
+        <h3>@ViewData["Message"]</h3>
+    </form>
+</div>
+    -->

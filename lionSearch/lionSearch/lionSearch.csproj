@@ -138,6 +138,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ContactModel.cs" />
+    <Compile Include="Models\ErrorViewModel.cs" />
+    <Compile Include="Models\AddStudentModel.cs" />
+    <Compile Include="Models\StudentModel.cs" />
+    <Compile Include="Models\StudentPageModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -181,10 +186,10 @@
     <Content Include="Views\Home\EditStudent.cshtml" />
     <Content Include="Views\Home\DeleteStudent.cshtml" />
     <Content Include="Views\Home\ShowAllTables.cshtml" />
+    <Content Include="Views\Home\AddStudent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
