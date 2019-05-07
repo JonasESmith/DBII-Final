@@ -87,6 +87,11 @@ namespace WebApplication1.Controllers
       return View(model);
     }
 
+    public IActionResult ShowAllTables()
+    {
+      return View();
+    }
+
     [HttpPost, ValidateAntiForgeryToken]
 		public IActionResult Index(IndexPageModel indexModel)
 		{
