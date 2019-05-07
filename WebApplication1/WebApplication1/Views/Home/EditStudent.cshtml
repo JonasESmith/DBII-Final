@@ -7,6 +7,20 @@
 
 <table class="table table-bordered table-responsive table-hover">
     <tr>
+        <th>ID</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Adress</th>
+        <th>Major</th>
+        <th>Phone</th>
+        <th></th>
         <th></th>
     </tr>
+    @foreach (var list in Model)
+    {
+        <tr>
+                <td>@list.ToString()</td>
+        </tr>
+    }
+
 </table>
