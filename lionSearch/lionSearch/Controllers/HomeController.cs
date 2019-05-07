@@ -43,6 +43,7 @@ namespace lionSearch.Controllers
 		[HttpGet]
 		public ActionResult AddStudent()
 		{
+			ModelState.Clear();
 			return View(new AddStudentModel());
 		}
 
