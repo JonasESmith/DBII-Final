@@ -45,6 +45,11 @@ namespace WebApplication1.Controllers
 			return View();
 		}
 
+    public IActionResult EditStudent()
+    {
+      return View();
+    }
+
     public IActionResult EmailStudents()
     {
       // For help with the connection see:
