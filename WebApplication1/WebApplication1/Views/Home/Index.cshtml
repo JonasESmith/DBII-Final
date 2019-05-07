@@ -18,7 +18,7 @@
 
         <input asp-for="Student.GradDate" type="date" /><br /><br />
 
-        <select asp-for="Contact.Type" asp-items="Html.GetEnumSelectList<IndexPageModel.ContactType>()" name="ContactType"></select>
+        <select asp-for="Contact.Type" asp-items="Html.GetEnumSelectList<ContactModel.ContactType>()" name="ContactType"></select>
         <input asp-for="Contact.ContactInfo" type="text" /><br /><br />
 
         <input type="submit" />

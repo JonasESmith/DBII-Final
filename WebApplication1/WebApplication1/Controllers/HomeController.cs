@@ -52,7 +52,7 @@ namespace WebApplication1.Controllers
       MySqlConnection conn;
       MySqlCommand cmd;
 
-      var model = new List<Student>();
+      var model = new List<StudentPageModel>();
       try
       {
         conn = new MySqlConnection();
@@ -67,11 +67,12 @@ namespace WebApplication1.Controllers
         MySqlDataReader sqlReader = cmd.ExecuteReader();
         while (sqlReader.Read())
         {
-          var student = new Student();
-          student.FirstName = sqlReader["first_name"].ToString();
-          student.LastName = sqlReader["last_name"].ToString();
-          student.Phone = sqlReader["ContactInfo"].ToString();
-          student.Major = sqlReader["Major"].ToString();
+          var student = new StudentPageModel();
+		  student.StudentInfo = new Tuple<StudentModel, ContactModel>(new StudentModel(), new ContactModel());
+          student.StudentInfo.Item1.FirstName = sqlReader["first_name"].ToString();
+          student.StudentInfo.Item1.LastName = sqlReader["last_name"].ToString();
+          student.StudentInfo.Item2.ContactInfo = sqlReader["ContactInfo"].ToString();
+          student.StudentInfo.Item1.Major = sqlReader["Major"].ToString();
 
           model.Add(student);
         }
