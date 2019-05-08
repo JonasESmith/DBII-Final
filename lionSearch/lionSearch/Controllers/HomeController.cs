@@ -55,7 +55,8 @@ namespace lionSearch.Controllers
 			MySqlCommand cmd;
 			MySqlDataReader reader;
 			MySqlDataReader reader2;
-			conn = new MySqlConnection();
+      MySqlDataReader reader3;
+      conn = new MySqlConnection();
 			conn.ConnectionString = dbConnectionString;
 
       student.Student.FirstName = Request["FirstName"];
@@ -65,7 +66,7 @@ namespace lionSearch.Controllers
       student.Student.GradDate = Request["Date"];
 
       student.Contact.Type = ContactModel.ContactType.Phone;
-      student.Contact.ContactInfo = Request["ContactInfo"];
+      student.Contact.ContactInfo = Request["PhoneNumber"];
 
       try
 			{
@@ -92,9 +93,29 @@ namespace lionSearch.Controllers
 												student.Student.FirstName, student.Student.LastName, student.Student.Address,
 												student.Student.Major, student.Student.GradDate, student.Contact.Type, student.Contact.ContactInfo);
 
-				reader2 = cmd.ExecuteReader();
+        reader2 = cmd.ExecuteReader();
+
+        conn.Close();
+        conn.Open();
+
+        cmd = new MySqlCommand();
+        cmd.Connection = conn;
+        cmd.CommandType = CommandType.Text;
+
+        student.Contact.Type = ContactModel.ContactType.Email;
+        student.Contact.ContactInfo = Request["Email"];
+
 				ViewData["Message"] = "Data successfully submitted.";
-			}
+
+        cmd.CommandText = String.Format("INSERT INTO Contact VALUES ((SELECT studentID FROM Student WHERE first_name = \"{0}\" AND "
+                        + "last_name = \"{1}\" AND Address = \"{2}\" AND Major = \"{3}\" AND Expected_Graduation IS NULL) "
+                        + ", NULL, \"{5}\", \"{6}\")",
+                        student.Student.FirstName, student.Student.LastName, student.Student.Address,
+                        student.Student.Major, student.Student.GradDate, student.Contact.Type, student.Contact.ContactInfo);
+
+        reader3 = cmd.ExecuteReader();
+        ViewData["Message"] = "Data successfully submitted.";
+      }
 			catch (MySql.Data.MySqlClient.MySqlException ex)
 			{
 				ViewData["Message"] = ex.Message;

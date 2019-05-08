@@ -20,7 +20,9 @@
         Expected Graduation:
         @Html.TextBox("Date", Model.Student.GradDate, new { @type = "date" })<br />
         Phone Number:
-        @Html.TextBox("ContactInfo", Model.Contact.ContactInfo)<br />
+        @Html.TextBox("PhoneNumber", Model.Contact.ContactInfo)<br />
+        Email:
+        @Html.TextBox("Email", Model.Contact.ContactInfo)<br />
     </div>
     <input type="submit" value="Add Student" />
 }
