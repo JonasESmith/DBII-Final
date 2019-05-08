@@ -125,7 +125,8 @@ namespace lionSearch.Controllers
       return View(student);
     }
 
-    public ActionResult UpdateStudent(AddStudentModel student)
+	[HttpPost]
+    public ActionResult UpdateStudent(List<string> student)
     {
       string firstName = Request["FirstName"];
 

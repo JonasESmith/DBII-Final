@@ -5,7 +5,11 @@
 
 <h2>Update</h2>
 
-<table class="table table-bordered table-responsive table-hover">
+
+
+@using (Html.BeginForm("UpdateStudent", "Home", new { student = Model }))
+{
+    <table class="table table-bordered table-responsive table-hover">
     <tr></tr>
     <tr><td> @Html.TextBox("FirstName", Model[0]) </tr>
     <tr><td> @Html.TextBox("LastName", Model[1]) </tr>
@@ -14,9 +18,6 @@
     <tr><td> @Html.TextBox("Date", Model[4]) </tr>
 
 </table>
-
-@using (Html.BeginForm("UpdateStudent", "Home", new { student = Model }))
-{
     <td> <input type="submit" value="Update Records" /> </td>
 }
 
