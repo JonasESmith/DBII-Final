@@ -125,8 +125,11 @@ namespace lionSearch.Controllers
       return View(student);
     }
 
-    public ActionResult UpdateStudent()
+    public ActionResult UpdateStudent(AddStudentModel student)
     {
+      string firstName = Request["FirstName"];
+
+
       MySqlConnection conn;
       MySqlCommand cmd;
       MySqlDataReader reader;
