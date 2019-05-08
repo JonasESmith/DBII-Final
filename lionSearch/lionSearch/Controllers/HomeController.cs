@@ -251,7 +251,7 @@ namespace lionSearch.Controllers
         cmd.CommandType = CommandType.Text;
         conn.Open();
 
-        cmd.CommandText = string.Format("Select * from Student Natural Join Contact where Contact.Type = \"Phone\" or Contact.contactInfo = \"\" Order By Major");
+        cmd.CommandText = string.Format("Select * from Student Natural Join Contact where Contact.Type = \"Phone\" Order By Major");
 
         MySqlDataReader sqlReader = cmd.ExecuteReader();
         while (sqlReader.Read())
