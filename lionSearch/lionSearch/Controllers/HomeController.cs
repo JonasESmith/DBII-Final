@@ -160,7 +160,7 @@ namespace lionSearch.Controllers
     }
 
     [HttpPost]
-    public ActionResult DeleteStudent(List<string> student)
+    public ActionResult DeleteStudent(string student)
     {
       MySqlConnection conn;
       MySqlCommand cmd;
@@ -175,7 +175,7 @@ namespace lionSearch.Controllers
         cmd.Connection = conn;
         cmd.CommandType = CommandType.Text;
         conn.Open();
-        cmd.CommandText = string.Format("DELETE FROM Student WHERE studentID = {0}", student[0]);
+        cmd.CommandText = string.Format("DELETE FROM Student WHERE studentID = {0}", student);
         ViewData["Message"] = "Data deleted";
 
         reader = cmd.ExecuteReader();

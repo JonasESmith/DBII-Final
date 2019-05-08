@@ -24,12 +24,12 @@
                 <td>@item.ToString()</td>
             }
 
-            @using (Html.BeginForm("EditStudent", "Home", new { student = list }))
+            @using (Html.BeginForm("EditStudent", "Home", new { student = 11 }))
             {
                 <td> <input type="submit" value="Edit" /> </td>
             }
 
-            @using (Html.BeginForm("DeleteStudent", "Home", new { student = list }))
+            @using (Html.BeginForm("DeleteStudent", "Home", new { student = list[0] }))
             {
                 <td> <input type="submit" value="Delete" /> </td>
             }
