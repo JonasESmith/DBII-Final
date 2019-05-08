@@ -14,17 +14,18 @@
         Last name:
         @Html.TextBox("LastName", Model.Student.LastName)<br />
         Address:
-        @Html.TextBox("Address" , Model.Student.Address)<br />
+        @Html.TextBox("Address", Model.Student.Address)<br />
         Major:
         @Html.TextBox("Major", Model.Student.Major)<br />
         Expected Graduation:
-        @Html.TextBox("Date",Model.Student.GradDate, new { @type = "date" })<br />
-        @*@Html.EnumDropDownListFor("Type", Model.Contact.Type )*@
+        @Html.TextBox("Date", Model.Student.GradDate, new { @type = "date" })<br />
+        Phone Number:
         @Html.TextBox("ContactInfo", Model.Contact.ContactInfo)<br />
     </div>
     <input type="submit" value="Add Student" />
 }
 
+    <h3>@ViewData["Message"]</h3>
 <!--
 using (Html.BeginForm())
 {
@@ -71,7 +72,6 @@ section Scripts {
 
         <input type="submit" />
 
-        <h3>@ViewData["Message"]</h3>
     </form>
 </div>
     -->

@@ -54,6 +54,7 @@ namespace lionSearch.Controllers
 			MySqlConnection conn;
 			MySqlCommand cmd;
 			MySqlDataReader reader;
+			MySqlDataReader reader2;
 			conn = new MySqlConnection();
 			conn.ConnectionString = dbConnectionString;
 
@@ -68,15 +69,22 @@ namespace lionSearch.Controllers
 
       try
 			{
+				conn.Open();
 				cmd = new MySqlCommand();
 				cmd.Connection = conn;
 				cmd.CommandType = CommandType.Text;
-				conn.Open();
 				cmd.CommandText = String.Format("INSERT INTO Student VALUES (NULL, \"{0}\", \"{1}\", \"{2}\", \"{3}\", NULL);",
 												student.Student.FirstName, student.Student.LastName, student.Student.Address,
 												student.Student.Major, student.Student.GradDate);
 
 				reader = cmd.ExecuteReader();
+
+				conn.Close();
+				conn.Open();
+
+				cmd = new MySqlCommand();
+				cmd.Connection = conn;
+				cmd.CommandType = CommandType.Text;
 
 				cmd.CommandText = String.Format("INSERT INTO Contact VALUES ((SELECT studentID FROM Student WHERE first_name = \"{0}\" AND "
 												+ "last_name = \"{1}\" AND Address = \"{2}\" AND Major = \"{3}\" AND Expected_Graduation IS NULL) "
@@ -84,7 +92,7 @@ namespace lionSearch.Controllers
 												student.Student.FirstName, student.Student.LastName, student.Student.Address,
 												student.Student.Major, student.Student.GradDate, student.Contact.Type, student.Contact.ContactInfo);
 
-				reader = cmd.ExecuteReader();
+				reader2 = cmd.ExecuteReader();
 				ViewData["Message"] = "Data successfully submitted.";
 			}
 			catch (MySql.Data.MySqlClient.MySqlException ex)
