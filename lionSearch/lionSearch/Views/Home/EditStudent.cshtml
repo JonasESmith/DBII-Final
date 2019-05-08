@@ -11,7 +11,7 @@
 {
     <table class="table table-bordered table-responsive table-hover">
     <tr></tr>
-    <tr><td> ID @Html.TextBox("StudentID", Model[0], new { disabled = "disabled" }) </tr>
+    <tr><td> ID @Html.TextBox("StudentID", Model[0], new {  @readonly = "readonly" }) </tr>
     <tr><td> First Name @Html.TextBox("FirstName", Model[1]) </tr>
     <tr><td> Last Name @Html.TextBox("LastName", Model[2]) </tr>
     <tr><td> Address @Html.TextBox("Address", Model[3]) </tr>
