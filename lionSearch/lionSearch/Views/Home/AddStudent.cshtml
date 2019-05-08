@@ -13,13 +13,13 @@
         Last name:
         @Html.TextBox("LastName", Model.Student.LastName)<br />
         Address:
-        @Html.TextBoxFor(m => Model.Student.Address)<br />
+        @Html.TextBox("Address" , Model.Student.Address)<br />
         Major:
-        @Html.TextBoxFor(m => m.Student.Major)<br />
+        @Html.TextBox("Major", Model.Student.Major)<br />
         Expected Graduation:
-        @Html.TextBoxFor(m => m.Student.Address, new { @type = "date" })<br />
-        @Html.EnumDropDownListFor(m => m.Contact.Type)
-        @Html.TextBoxFor(m => m.Contact.ContactInfo)<br />
+        @Html.TextBox("Date",Model.Student.GradDate, new { @type = "date" })<br />
+        @*@Html.EnumDropDownListFor("Type", Model.Contact.Type )*@
+        @Html.TextBox("ContactInfo", Model.Contact.ContactInfo)<br />
     </div>
     <input type="submit" value="Add Student" />
 }

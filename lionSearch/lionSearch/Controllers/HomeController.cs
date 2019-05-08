@@ -58,7 +58,16 @@ namespace lionSearch.Controllers
 			conn = new MySqlConnection();
 			conn.ConnectionString = dbConnectionString;
 
-			try
+      student.Student.FirstName = Request["FirstName"];
+      student.Student.LastName = Request["LastName"];
+      student.Student.Address = Request["Address"];
+      student.Student.Major = Request["Major"];
+      student.Student.GradDate = Request["Date"];
+
+      student.Contact.Type = ContactModel.ContactType.Phone;
+      student.Contact.ContactInfo = Request["ContactInfo"];
+
+      try
 			{
 				cmd = new MySqlCommand();
 				cmd.Connection = conn;
@@ -170,7 +179,7 @@ namespace lionSearch.Controllers
         cmd.CommandType = CommandType.Text;
         conn.Open();
 
-        cmd.CommandText = string.Format("Select * from Student Natural Join Contact where Contact.Type = \"Phone\" Order By Major");
+        cmd.CommandText = string.Format("Select * from Student Natural Join Contact where Contact.Type = \"Phone\" or Contact.contactInfo = \"\" Order By Major");
 
         MySqlDataReader sqlReader = cmd.ExecuteReader();
         while (sqlReader.Read())
