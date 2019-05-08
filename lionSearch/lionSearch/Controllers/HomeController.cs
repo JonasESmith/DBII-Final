@@ -134,20 +134,28 @@ namespace lionSearch.Controllers
       conn = new MySqlConnection();
       conn.ConnectionString = dbConnectionString;
 
+      List<string> studentList = new List<string>();
+
       try
       {
         cmd = new MySqlCommand();
         cmd.Connection = conn;
         cmd.CommandType = CommandType.Text;
         conn.Open();
-        cmd.CommandText = string.Format("UPDATE Student SET first_name = \"{0}\", last_name = \"{1}\", Address = \"{2}\", Major = \"{3}\" " +
-                        "WHERE studentID = {4};",
-                        student[1], student[2], student[3], student[4], student[0]);
+        cmd.CommandText = String.Format("Select * from Student where studentID = {0}", student);
+
+        MySqlDataReader sqlReader = cmd.ExecuteReader();
+        while (sqlReader.Read())
+        {
+          studentList.Add(sqlReader["studentID"].ToString());
+          studentList.Add(sqlReader["first_name"].ToString());
+          studentList.Add(sqlReader["last_name"].ToString());
+          studentList.Add(sqlReader["Address"].ToString());
+          studentList.Add(sqlReader["Major"].ToString());
+        }
+
         ViewData["Message"] = cmd.CommandText;
         reader = cmd.ExecuteReader();
-
-        cmd.CommandText = string.Format("UPDATE Contact SET contactInfo = \"{0}\" WHERE studentID = {1}",
-                        student[5], student[0]);
       }
       catch (MySql.Data.MySqlClient.MySqlException ex)
       {
@@ -156,7 +164,7 @@ namespace lionSearch.Controllers
 
       conn.CloseAsync();
 
-      return View(student);
+      return View(studentList);
     }
 
     [HttpPost]

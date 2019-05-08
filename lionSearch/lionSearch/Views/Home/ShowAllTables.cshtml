@@ -24,7 +24,7 @@
                 <td>@item.ToString()</td>
             }
 
-            @using (Html.BeginForm("EditStudent", "Home", new { student = 11 }))
+            @using (Html.BeginForm("EditStudent", "Home", new { student = list[0] }))
             {
                 <td> <input type="submit" value="Edit" /> </td>
             }
