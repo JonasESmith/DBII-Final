@@ -146,7 +146,7 @@ namespace lionSearch.Controllers
         conn.Open();
         cmd.CommandText = String.Format("UPDATE Student SET first_name = \"{0}\", last_name = \"{1}\", Address = \"{2}\", Major = \"{3}\" " +
                         "WHERE studentID = {4};",
-                        Request["FirstName"], Request["LastName"], Request["Address"], Request["Major"], Request["Date"]);
+                        Request["FirstName"], Request["LastName"], Request["Address"], Request["Major"], Request["StudentID"]);
         ViewData["Message"] = cmd.CommandText;
         reader = cmd.ExecuteReader();
       }
