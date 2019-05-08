@@ -187,6 +187,7 @@
     <Content Include="Views\Home\DeleteStudent.cshtml" />
     <Content Include="Views\Home\ShowAllTables.cshtml" />
     <Content Include="Views\Home\AddStudent.cshtml" />
+    <Content Include="Views\Home\UpdateStudent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

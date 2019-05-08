@@ -3,22 +3,21 @@
 *@
 @model List<string>
 
-<h2>Update @string.Format("{0} {1} record", Model[1], Model[2])</h2>
+<h2>Update</h2>
 
 <table class="table table-bordered table-responsive table-hover">
     <tr></tr>
-    @for (var i = 0; i < Model.Count; i++)
-    {
-        <tr>
-            <td> <input asp-for="@Model[i]" type="text" value="@Model[i].ToString()" />
-        </tr>
-    }
+    <tr><td> @Html.TextBox("FirstName", Model[0])</tr>
+    <tr><td> @Html.TextBox("LastName", Model[1])</tr>
+    <tr><td> @Html.TextBox("Address", Model[2])</tr>
+    <tr><td> @Html.TextBox("Major", Model[3])</tr>
+    <tr><td> @Html.TextBox("Date", Model[4])</tr>
 
 </table>
 
-@using (Html.BeginForm("EditStudent", "Home", new { student = Model }))
+@using (Html.BeginForm("UpdateStudent", "Home"))
 {
-    <td> <input type="submit" value="Edit" /> </td>
+    <td> <input type="submit" value="Update Records" /> </td>
 }
 
 @ViewData["Message"]

@@ -40,24 +40,24 @@ namespace lionSearch.Controllers
       return View();
     }
 
-		[HttpGet]
-		public ActionResult AddStudent()
-		{
-			return View(new AddStudentModel());
-		}
+    [HttpGet]
+    public ActionResult AddStudent()
+    {
+      return View(new AddStudentModel());
+    }
 
-		[HttpPost, ValidateAntiForgeryToken]
-		public ActionResult AddStudent(AddStudentModel student)
-		{
-			// For help with the connection see:
-			// https://dev.mysql.com/doc/connector-net/en/connector-net-programming-connecting-connection-string.html
-			MySqlConnection conn;
-			MySqlCommand cmd;
-			MySqlDataReader reader;
-			MySqlDataReader reader2;
+    [HttpPost, ValidateAntiForgeryToken]
+    public ActionResult AddStudent(AddStudentModel student)
+    {
+      // For help with the connection see:
+      // https://dev.mysql.com/doc/connector-net/en/connector-net-programming-connecting-connection-string.html
+      MySqlConnection conn;
+      MySqlCommand cmd;
+      MySqlDataReader reader;
+      MySqlDataReader reader2;
       MySqlDataReader reader3;
       conn = new MySqlConnection();
-			conn.ConnectionString = dbConnectionString;
+      conn.ConnectionString = dbConnectionString;
 
       student.Student.FirstName = Request["FirstName"];
       student.Student.LastName = Request["LastName"];
@@ -69,29 +69,29 @@ namespace lionSearch.Controllers
       student.Contact.ContactInfo = Request["PhoneNumber"];
 
       try
-			{
-				conn.Open();
-				cmd = new MySqlCommand();
-				cmd.Connection = conn;
-				cmd.CommandType = CommandType.Text;
-				cmd.CommandText = String.Format("INSERT INTO Student VALUES (NULL, \"{0}\", \"{1}\", \"{2}\", \"{3}\", NULL);",
-												student.Student.FirstName, student.Student.LastName, student.Student.Address,
-												student.Student.Major, student.Student.GradDate);
+      {
+        conn.Open();
+        cmd = new MySqlCommand();
+        cmd.Connection = conn;
+        cmd.CommandType = CommandType.Text;
+        cmd.CommandText = String.Format("INSERT INTO Student VALUES (NULL, \"{0}\", \"{1}\", \"{2}\", \"{3}\", NULL);",
+                        student.Student.FirstName, student.Student.LastName, student.Student.Address,
+                        student.Student.Major, student.Student.GradDate);
 
-				reader = cmd.ExecuteReader();
+        reader = cmd.ExecuteReader();
 
-				conn.Close();
-				conn.Open();
+        conn.Close();
+        conn.Open();
 
-				cmd = new MySqlCommand();
-				cmd.Connection = conn;
-				cmd.CommandType = CommandType.Text;
+        cmd = new MySqlCommand();
+        cmd.Connection = conn;
+        cmd.CommandType = CommandType.Text;
 
-				cmd.CommandText = String.Format("INSERT INTO Contact VALUES ((SELECT studentID FROM Student WHERE first_name = \"{0}\" AND "
-												+ "last_name = \"{1}\" AND Address = \"{2}\" AND Major = \"{3}\" AND Expected_Graduation IS NULL) "
-												+ ", NULL, \"{5}\", \"{6}\")",
-												student.Student.FirstName, student.Student.LastName, student.Student.Address,
-												student.Student.Major, student.Student.GradDate, student.Contact.Type, student.Contact.ContactInfo);
+        cmd.CommandText = String.Format("INSERT INTO Contact VALUES ((SELECT studentID FROM Student WHERE first_name = \"{0}\" AND "
+                        + "last_name = \"{1}\" AND Address = \"{2}\" AND Major = \"{3}\" AND Expected_Graduation IS NULL) "
+                        + ", NULL, \"{5}\", \"{6}\")",
+                        student.Student.FirstName, student.Student.LastName, student.Student.Address,
+                        student.Student.Major, student.Student.GradDate, student.Contact.Type, student.Contact.ContactInfo);
 
         reader2 = cmd.ExecuteReader();
 
@@ -105,7 +105,7 @@ namespace lionSearch.Controllers
         student.Contact.Type = ContactModel.ContactType.Email;
         student.Contact.ContactInfo = Request["Email"];
 
-				ViewData["Message"] = "Data successfully submitted.";
+        ViewData["Message"] = "Data successfully submitted.";
 
         cmd.CommandText = String.Format("INSERT INTO Contact VALUES ((SELECT studentID FROM Student WHERE first_name = \"{0}\" AND "
                         + "last_name = \"{1}\" AND Address = \"{2}\" AND Major = \"{3}\" AND Expected_Graduation IS NULL) "
@@ -116,14 +116,45 @@ namespace lionSearch.Controllers
         reader3 = cmd.ExecuteReader();
         ViewData["Message"] = "Data successfully submitted.";
       }
-			catch (MySql.Data.MySqlClient.MySqlException ex)
-			{
-				ViewData["Message"] = ex.Message;
-			}
+      catch (MySql.Data.MySqlClient.MySqlException ex)
+      {
+        ViewData["Message"] = ex.Message;
+      }
 
-			conn.CloseAsync();
-			return View(student);
-		}
+      conn.CloseAsync();
+      return View(student);
+    }
+
+    public ActionResult UpdateStudent()
+    {
+      MySqlConnection conn;
+      MySqlCommand cmd;
+      MySqlDataReader reader;
+
+      conn = new MySqlConnection();
+      conn.ConnectionString = dbConnectionString;
+
+      try
+      {
+        cmd = new MySqlCommand();
+        cmd.Connection = conn;
+        cmd.CommandType = CommandType.Text;
+        conn.Open();
+        cmd.CommandText = String.Format("UPDATE Student SET first_name = \"{0}\", last_name = \"{1}\", Address = \"{2}\", Major = \"{3}\" " +
+                        "WHERE studentID = {4};",
+                        Request["FirstName"], Request["LastName"], Request["Address"], Request["Major"], Request["Date"]);
+        ViewData["Message"] = cmd.CommandText;
+        reader = cmd.ExecuteReader();
+      }
+      catch (MySql.Data.MySqlClient.MySqlException ex)
+      {
+        ViewData["Message"] = ex.Message;
+      }
+
+      conn.CloseAsync();
+
+      return View();
+    }
 
     public ActionResult EditStudent(string student)
     {
@@ -156,6 +187,7 @@ namespace lionSearch.Controllers
 
         ViewData["Message"] = cmd.CommandText;
         reader = cmd.ExecuteReader();
+        conn.Close();
       }
       catch (MySql.Data.MySqlClient.MySqlException ex)
       {
