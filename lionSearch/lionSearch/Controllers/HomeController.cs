@@ -125,7 +125,7 @@ namespace lionSearch.Controllers
 			return View(student);
 		}
 
-    public ActionResult EditStudent(List<string> student)
+    public ActionResult EditStudent(string student)
     {
       MySqlConnection conn;
       MySqlCommand cmd;
@@ -187,7 +187,7 @@ namespace lionSearch.Controllers
 
       conn.CloseAsync();
 
-      return View(student);
+      return View();
     }
 
     public ActionResult ShowAllTables()
